@@ -21,6 +21,6 @@ class SiteLayoutFooter extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.site-layout-footer');
+        return view('layouts.site.footer');
     }
 }

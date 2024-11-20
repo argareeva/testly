@@ -21,6 +21,6 @@ class SiteLayoutMenu extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.site-layout-menu');
+        return view('layouts.site.menu');
     }
 }
