@@ -17,10 +17,10 @@ class ApplicationFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake() -> sentence(),
-            'description' => fake() -> realText(200),
-            'author_id' => fake() -> numberBetween(1, 10),
-            'published_at' => fake() -> optional() -> dateTime(),
+            'name' => fake()->sentence(),
+            'description' => fake()->realText(200),
+            'author_id' => fake()->numberBetween(1, 10),
+            'published_at' => fake()->optional()->dateTime(),
         ];
     }
 }

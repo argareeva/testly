@@ -45,4 +45,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    //Model relationships
+    public function applications()
+    {
+        return $this->hasMany(Application::class, 'author_id');
+    }
 }
