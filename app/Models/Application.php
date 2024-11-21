@@ -16,8 +16,14 @@ class Application extends Model
     ];
 
     //Model methods
-    public function author() {
+    public function author()
+    {
         return $this->belongsTo(User::class, 'author_id');
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'application_category');
     }
 
     public function summary (int $length=50): string
