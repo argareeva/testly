@@ -1,4 +1,4 @@
-<x-site-layout>
+<x-site-layout title="Testly">
 
     @foreach($applications as $application)
         <div class="mt-4">

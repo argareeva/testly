@@ -8,12 +8,10 @@ use Illuminate\View\Component;
 
 class SiteLayout extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public $title;
+    public function __construct(?string $title = null)
     {
-        //
+        $this->title = $title;
     }
 
     /**
