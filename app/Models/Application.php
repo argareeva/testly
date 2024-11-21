@@ -9,4 +9,8 @@ class Application extends Model
 {
     /** @use HasFactory<\Database\Factories\ApplicationFactory> */
     use HasFactory;
+
+    function author() {
+        return $this->belongsTo(Author::class, 'author_id');
+    }
 }
