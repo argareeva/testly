@@ -26,6 +26,12 @@ class Application extends Model
         return $this->belongsToMany(Category::class, 'application_category');
     }
 
+    // Model scopes --------
+    public function scopePublished($query)
+    {
+        return $query->whereNotNull('published_at')->where('published_at', '<=', now());
+    }
+
     public function summary (int $length=50): string
     {
         return Str::of($this->description)->limit($length);
