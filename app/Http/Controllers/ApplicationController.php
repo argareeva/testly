@@ -9,7 +9,7 @@ class ApplicationController extends Controller
 {
     public function index()
     {
-        $applications = Application::whereNotNull('published_at')->orderByDesc('published_at')->get();
+        $applications = Application::published()->orderByDesc('published_at')->get();
         return view('applications.index')->with('applications', $applications);
     }
 

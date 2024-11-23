@@ -11,6 +11,7 @@ class Application extends Model
     /** @use HasFactory<\Database\Factories\ApplicationFactory> */
     use HasFactory;
 
+    protected $guarded = [];
     protected $casts = [
         'published_at' => 'datetime',
     ];
