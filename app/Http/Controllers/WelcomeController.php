@@ -9,8 +9,7 @@ class WelcomeController extends Controller
 {
     public function __invoke()
     {
-        $applications = Application::whereNotNull('published_at')->get()->sortByDesc('published_at');
-        //return view('welcome') -> with('applications', $applications);
+        $applications = Application::published()->get()->sortByDesc('published_at');
         return view('welcome', compact('applications'));
     }
 }
