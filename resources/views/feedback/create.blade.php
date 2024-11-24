@@ -141,28 +141,27 @@
                 <label class="block text-sm font-medium text-gray-700">Would you like to receive updates?</label>
 
                 <div class="flex items-center space-x-4">
-                    <!-- Yes checkbox -->
+                    <!-- Yes radio button -->
                     <div class="flex items-center">
                         <input
                             type="radio"
-                            id="update_me_yes"
+                            id="update_me"
                             name="update_me"
-                            value=true
+                            value=" {{ old('update_me', 1)}}"
                             class="mr-2"
                         >
-                        <label for="update_me_yes" class="text-sm">Yes</label>
+                        <label for="update_me" class="text-sm">Yes</label>
                     </div>
 
-                    <!-- No checkbox -->
+                    <!-- No radio button -->
                     <div class="flex items-center">
                         <input
                             type="radio"
-                            id="update_me_no"
+                            id="update_me"
                             name="update_me"
-                            value=false
-                            class="mr-2"
+                            value="{{ old('update_me', 0)}}"
                         >
-                        <label for="update_me_no" class="text-sm">No</label>
+                        <label for="update_me" class="text-sm">No</label>
                     </div>
                 </div>
 

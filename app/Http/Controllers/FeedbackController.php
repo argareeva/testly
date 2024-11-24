@@ -28,10 +28,8 @@ class FeedbackController extends Controller
             'recommendation' => ['required', 'integer', 'min:1', 'max:5'],
             'functionality' => ['required', 'integer', 'min:1', 'max:5'],
             'usability' => ['required', 'integer', 'min:1', 'max:5'],
-            'update_me' => ['nullable', 'boolean'],
+            'update_me' => ['required', 'in:0,1'],
         ]);
-
-        //@dd($request->all());
 
         $feedback = Feedback::create([
             'application_id' => $application->id,
