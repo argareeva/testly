@@ -27,6 +27,11 @@ class Application extends Model
         return $this->belongsToMany(Category::class, 'application_category');
     }
 
+    public function feedback()
+    {
+        return $this->hasMany(Feedback::class);
+    }
+
     // Model scopes --------
     public function scopePublished($query)
     {
