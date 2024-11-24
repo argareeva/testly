@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Application;
 use App\Models\Category;
+use App\Models\Feedback;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -23,5 +24,8 @@ class DatabaseSeeder extends Seeder
             $application->categories()->attach($list_of_categories);
         }
         Category::factory(1)->create();
+
+        Feedback::factory(20)->create();
+
     }
 }
