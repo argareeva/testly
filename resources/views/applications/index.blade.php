@@ -1,4 +1,4 @@
-<x-site-layout title="Application list">
+<x-site-layout title="Tested applications">
     @foreach($applications as $application)
         <a href="{{route('applications.show', $application->id)}}" class="mt-4">
             <h2 class="font-bold text-lg">{{$application->name}}</h2>

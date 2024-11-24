@@ -17,6 +17,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->text('content');
+            $table->tinyInteger('recommendation')->default(3);
+            $table->tinyInteger('functionality')->default(3);
+            $table->tinyInteger('usability')->default(3);
+            $table->boolean('update_me')->default(false);
             $table->timestamps();
         });
     }

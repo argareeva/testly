@@ -2,7 +2,7 @@
     <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         @foreach($applications as $application)
             <a href="{{ route('applications.show', $application->id) }}" class="block p-4 border rounded-lg shadow-sm hover:shadow-md hover:border-blue-400 transition">
-                <h2 class="font-bold text-lg text-blue-600 truncate">
+                <h2 class="font-bold text-lg text-gray-800 truncate">
                     {{$application->name}}
                 </h2>
                 <div class="text-sm text-gray-500 mt-1">

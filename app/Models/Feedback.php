@@ -14,6 +14,10 @@ class Feedback extends Model
         'name',
         'email',
         'content',
+        'recommendation',
+        'functionality',
+        'usability',
+        'update_me'
     ];
 
     /**
