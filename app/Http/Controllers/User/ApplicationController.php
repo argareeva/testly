@@ -31,16 +31,29 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
-//        $request->validate([
-//            'name' => ['required', 'string', 'min:5', 'max:255'],
-//            'description' => ['required', 'string'],
-//        ]);
+        $request->validate([
+            'name' => ['required', 'string', 'min:5', 'max:255'],
+            'description' => ['required', 'string'],
+            'image' => ['nullable', 'image', 'file', 'max:1024'],
+        ]);
 
         $application = Application::create([
             'name' => $request->name,
             'description' => $request->description,
             'author_id' => 1,
         ]);
+
+        if ($request->has('image')) {
+
+            // Remove existing image if any
+            if ($application->hasMedia('images')) {
+                $application->clearMediaCollection('images');
+            }
+
+            // Add the new image
+            $application->addMediaFromRequest('image')
+                ->toMediaCollection('images');
+        }
 
         session()->flash('success', 'New application [<span class="font-bold">'.$application->name.'</span>] created successfully');
 
@@ -54,7 +67,7 @@ class ApplicationController extends Controller
     {
         $application = Application::findOrFail($id);
 
-        return view('applications.show', compact('application'));
+        return view('user.applications.show', compact('application'));
     }
 
     /**
@@ -72,10 +85,11 @@ class ApplicationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-//        $request->validate([
-//            'name' => ['required', 'string', 'min:5', 'max:255'],
-//            'description' => ['required', 'string'],
-//        ]);
+        $request->validate([
+            'name' => ['required', 'string', 'min:5', 'max:255'],
+            'description' => ['required', 'string'],
+            'image' => ['nullable', 'image', 'file', 'max:1024'],
+        ]);
 
         $application = Application::find($id);
 
@@ -83,6 +97,18 @@ class ApplicationController extends Controller
             'name' => $request->name,
             'description' => $request->description,
         ]);
+
+        if ($request->has('image')) {
+
+            // Remove existing image if any
+            if ($application->hasMedia('images')) {
+                $application->clearMediaCollection('images');
+            }
+
+            // Add the new image
+            $application->addMediaFromRequest('image')
+                ->toMediaCollection('images');
+        }
 
         session()->flash('success', 'Application [<span class="font-bold">'.$application->name.'</span>] updated successfully');
 
