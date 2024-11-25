@@ -1,5 +1,5 @@
 <x-site-layout title="Update Application">
-    <form action="{{ route('user.applications.update', $application) }}" method="POST" class="space-y-4">
+    <form action="{{ route('user.applications.update', $application) }}" method="POST" class="space-y-4" enctype="multipart/form-data">
         @method('PUT')
         @csrf
 
@@ -29,6 +29,49 @@
             <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
             @enderror
         </div>
+
+        <div class="mb-6">
+            <label for="image" class="block text-sm font-medium text-gray-700">Upload Image</label>
+
+            <!-- File input -->
+            <input type="file" name="image" id="image"
+                   accept="image/*"
+                   onchange="previewImage(event)"
+                   class="block w-full mt-2 text-sm text-gray-500 file:mr-4 file:py-2 file:px-4
+                  file:rounded-full file:border-0 file:text-sm
+                  file:font-semibold file:bg-blue-50 file:text-blue-700
+                  hover:file:bg-blue-100">
+
+            <!-- Image preview -->
+            <div class="mt-4">
+                <img id="imagePreview"
+                     src="{{ $application->media->first() ? $application->media->first()->getUrl() : asset('images/default-image.jpg') }}"
+                     alt="Image Preview"
+                     class="w-1/3 mx-auto rounded-lg shadow-lg">
+            </div>
+
+            <!-- Error handling -->
+            @php $name = 'image'; @endphp
+            @include('components.form._form-error-handling')
+        </div>
+
+        <script>
+            function previewImage(event) {
+                const imagePreview = document.getElementById('imagePreview');
+                const file = event.target.files[0];
+
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        imagePreview.src = e.target.result; // Set preview image source to selected file
+                    };
+                    reader.readAsDataURL(file); // Read the file to generate a base64 string
+                } else {
+                    // Reset to default image if no file selected
+                    imagePreview.src = "{{ asset('images/default-image.jpg') }}";
+                }
+            }
+        </script>
 
         <div class="flex justify-end space-x-4">
             <a href="{{ route('user.applications.index') }}" class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">
