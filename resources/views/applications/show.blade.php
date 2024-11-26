@@ -25,7 +25,7 @@
 
         <!-- Feedback Form Button -->
         <div class="mt-6">
-            <a href="{{ route('feedback.create', $application->id) }}"
+            <a href="{{ route('user.feedback.create', $application->id) }}"
                class="bg-gray-800 text-white px-6 py-2 rounded shadow hover:bg-blue-600 transition">
                 Get Feedback Form
             </a>

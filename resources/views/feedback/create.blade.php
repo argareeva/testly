@@ -8,7 +8,7 @@
             </div>
         @endif
 
-        <form action="{{ route('feedback.store', ['application' => $application->id]) }}" method="POST" class="space-y-4">
+        <form action="{{ route('user.feedback.store', ['application' => $application->id]) }}" method="POST" class="space-y-4">
             @csrf
 
             <!-- Name -->

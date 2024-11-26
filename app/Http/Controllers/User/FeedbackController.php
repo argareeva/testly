@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use App\Models\Feedback;
+use App\Http\Controllers\Controller;
 use App\Models\Application;
+use App\Models\Feedback;
 use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
@@ -33,6 +34,7 @@ class FeedbackController extends Controller
 
         $feedback = Feedback::create([
             'application_id' => $application->id,
+            'user_id' => auth()->user()->id,
             'name' => $request->name,
             'email' => $request->email,
             'content' => $request->feedback,

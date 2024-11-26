@@ -26,6 +26,7 @@ class FeedbackFactory extends Factory
     {
         return [
             'application_id' => fake()->numberBetween(1, 10),
+            'user_id' => fake()->numberBetween(1, 10),
             'name' => fake()->sentence(),
             'email' => fake()->email(),
             'content' => fake()->paragraph(3),
