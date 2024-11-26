@@ -28,8 +28,14 @@ class Application extends Model implements HasMedia
 
     public function authorized($user)
     {
-        // Example logic: Check if the user has permission to modify this application
-        return $this->user_id === $user->id;
+        if($user->is_admin) {
+            return;
+        }
+        if ($this->author_id == $user->id) {
+            return;
+        }
+
+        abort(401);
     }
 
     public function categories()

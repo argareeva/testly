@@ -15,6 +15,12 @@ class ApplicationController extends Controller
     {
         $applications = Application::where('author_id', auth()->user()->id)->get();
 
+        if(auth()->user()->is_admin){
+            $applications = Application::get();
+        } else {
+            $applications = Application::where('author_id', auth()->user()->id)->get();
+        }
+
         return view('user.applications.index', compact('applications'));
     }
 
