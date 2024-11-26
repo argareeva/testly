@@ -16,6 +16,11 @@
             <li class="flex items-center justify-between py-2">
                 <span class="font-semibold">{{ $application->name }}</span>
                 <div class="flex items-center space-x-3">
+                    @if($application->published_at === null)
+                        <a href="{{route('user.applications.publish', $application)}}" class="text-green-600 hover:underline">Publish</a>
+                    @else
+                        <span class="text-xs text-gray-500">Published</span>
+                    @endif
                     <a href="{{ route('user.applications.edit', $application) }}" class="text-blue-500 hover:underline">
                         Edit
                     </a>

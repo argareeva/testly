@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FeedbackController;
 
 //Public visible routes
 Route::get('/', \App\Http\Controllers\WelcomeController::class)->name('welcome');
@@ -13,8 +12,9 @@ Route::post('/applications/{application}/feedback', [App\Http\Controllers\Feedba
 
 //Authenticated routes
 require __DIR__.'/auth.php';
-Route::name('user.')->group(function() {
+Route::name('user.')->middleware(['auth', 'verified'])->group(function () {
     Route::resource('user/applications', App\Http\Controllers\User\ApplicationController::class);
+    Route::get('user/applications/{id}/publish', \App\Http\Controllers\User\ApplicationPublishController::class)->name('applications.publish');
 });
 
 Route::get('/dashboard', function () {
