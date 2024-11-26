@@ -26,6 +26,12 @@ class Application extends Model implements HasMedia
         return $this->belongsTo(User::class, 'author_id');
     }
 
+    public function authorized($user)
+    {
+        // Example logic: Check if the user has permission to modify this application
+        return $this->user_id === $user->id;
+    }
+
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'application_category');

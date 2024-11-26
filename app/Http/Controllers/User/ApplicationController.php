@@ -13,7 +13,7 @@ class ApplicationController extends Controller
      */
     public function index()
     {
-        $applications = Application::all();
+        $applications = Application::where('author_id', auth()->user()->id)->get();
 
         return view('user.applications.index', compact('applications'));
     }
@@ -40,7 +40,7 @@ class ApplicationController extends Controller
         $application = Application::create([
             'name' => $request->name,
             'description' => $request->description,
-            'author_id' => 1,
+            'author_id' => auth()->user()->id,
         ]);
 
         if ($request->has('image')) {
@@ -67,6 +67,8 @@ class ApplicationController extends Controller
     {
         $application = Application::findOrFail($id);
 
+        $this->isAuthorized($application);
+
         return view('user.applications.show', compact('application'));
     }
 
@@ -76,6 +78,8 @@ class ApplicationController extends Controller
     public function edit(string $id)
     {
         $application = Application::find($id);
+
+        $this->isAuthorized($application);
 
         return view('user.applications.edit', compact('application'));
     }
@@ -92,6 +96,9 @@ class ApplicationController extends Controller
         ]);
 
         $application = Application::find($id);
+
+
+        $this->isAuthorized($application);
 
         $application->update([
             'name' => $request->name,
@@ -122,10 +129,19 @@ class ApplicationController extends Controller
     {
         $application = Application::findOrFail($id);
 
+        $this->isAuthorized($application);
+
         $application->delete();
 
         session()->flash('success', 'Application [<span class="font-bold">'.$application->name.'</span>] deleted successfully');
 
         return redirect()->route('user.applications.index');
+    }
+
+    private function isAuthorized(Application $application): void
+    {
+        if($application->author_id != auth()->user()->id) {
+            abort(401);
+        }
     }
 }
