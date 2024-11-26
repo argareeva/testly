@@ -146,8 +146,14 @@ class ApplicationController extends Controller
 
     private function isAuthorized(Application $application): void
     {
-        if($application->author_id != auth()->user()->id) {
-            abort(401);
+        if (auth()->user()->is_admin == 1) {
+            return;
         }
+
+        if ($application->author_id == auth()->user()->id) {
+            return;
+        }
+
+        abort(401);
     }
 }
