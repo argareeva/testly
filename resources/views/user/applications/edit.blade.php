@@ -30,8 +30,30 @@
             @enderror
         </div>
 
-        <x-form-checkboxes name="categories" label="Categories" :options="\App\Models\Category::orderBy('title')->pluck('title', 'id')->toArray()" :values="$application->categories->pluck('id')->toArray()" />
+        <!-- Categories Checkboxes -->
+        <div>
+            <label for="categories" class="block text-gray-700 font-medium">Categories</label>
+            <div class="mt-2 space-y-2">
+                @foreach(\App\Models\Category::orderBy('title')->pluck('title', 'id') as $id => $title)
+                    <div class="flex items-center">
+                        <input
+                            type="checkbox"
+                            id="category-{{ $id }}"
+                            name="categories[]"
+                            value="{{ $id }}"
+                            {{ in_array($id, old('categories', $application->categories->pluck('id')->toArray())) ? 'checked' : '' }}
+                            class="h-4 w-4 border-gray-300 rounded text-blue-600 focus:ring-blue-500"
+                        >
+                        <label for="category-{{ $id }}" class="ml-2 text-sm text-gray-700">{{ $title }}</label>
+                    </div>
+                @endforeach
+            </div>
+            @error('categories')
+            <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+            @enderror
+        </div>
 
+        <!-- Image Upload -->
         <div class="mb-6">
             <label for="image" class="block text-sm font-medium text-gray-700">Upload Image</label>
 
