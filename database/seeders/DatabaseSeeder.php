@@ -26,10 +26,10 @@ class DatabaseSeeder extends Seeder
         Application::factory(10)->create();
         Category::factory(5)->create();
 
-        foreach(Application::take(6)->get() as $application) {
-            $list_of_categories = Category::inRandomOrder()->take(random_int(0,4))->get();
+        foreach(Application::take(10)->get() as $application) {
+            $list_of_categories = Category::inRandomOrder()->take(random_int(1,3))->get();
             $application->categories()->attach($list_of_categories);
         }
-        Category::factory(1)->create();
+        Category::factory(5)->create();
     }
 }

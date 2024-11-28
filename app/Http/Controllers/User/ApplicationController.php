@@ -40,7 +40,7 @@ class ApplicationController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'min:5', 'max:255'],
             'description' => ['required', 'string'],
-            'categories' => ['nullable', 'array'],
+            'categories' => ['required', 'array'],
             'image' => ['nullable', 'image', 'file', 'max:1024'],
         ]);
 
@@ -101,7 +101,7 @@ class ApplicationController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'min:5', 'max:255'],
             'description' => ['required', 'string'],
-            'categories' => ['nullable', 'array'],
+            'categories' => ['required', 'array'],
             'image' => ['nullable', 'image', 'file', 'max:1024'],
         ]);
 
