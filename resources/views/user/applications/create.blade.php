@@ -31,6 +31,8 @@
             @enderror
         </div>
 
+        <x-form-checkboxes name="categories" label="Categories" :options="\App\Models\Category::orderBy('title')->pluck('title', 'id')->toArray()" />
+
         <!-- Image Upload -->
         <div class="mb-6">
             <label for="image" class="block text-sm font-medium text-gray-700">Upload Image</label>

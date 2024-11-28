@@ -40,6 +40,7 @@ class ApplicationController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'min:5', 'max:255'],
             'description' => ['required', 'string'],
+            'categories' => ['nullable', 'array'],
             'image' => ['nullable', 'image', 'file', 'max:1024'],
         ]);
 
@@ -48,6 +49,8 @@ class ApplicationController extends Controller
             'description' => $request->description,
             'author_id' => auth()->user()->id,
         ]);
+
+        $application->categories()->sync($request->categories);
 
         if ($request->has('image')) {
 
@@ -98,11 +101,11 @@ class ApplicationController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'min:5', 'max:255'],
             'description' => ['required', 'string'],
+            'categories' => ['nullable', 'array'],
             'image' => ['nullable', 'image', 'file', 'max:1024'],
         ]);
 
         $application = Application::find($id);
-
 
         $this->isAuthorized($application);
 
@@ -110,6 +113,8 @@ class ApplicationController extends Controller
             'name' => $request->name,
             'description' => $request->description,
         ]);
+
+        $application->categories()->sync($request->categories);
 
         if ($request->has('image')) {
 
