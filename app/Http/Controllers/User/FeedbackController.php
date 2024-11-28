@@ -44,6 +44,8 @@ class FeedbackController extends Controller
             'update_me' => $request->update_me
         ]);
 
+        auth()->user()->updateScore($application->id);
+
         session()->flash('success', 'Your feedback for the application [<span class="font-bold">'.$feedback->name.'</span>] has been submitted successfully.');
 
         return redirect()->route('applications.show', ['application' => $application]);

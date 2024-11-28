@@ -1,4 +1,9 @@
 <x-site-layout title="Tested applications">
+    <!-- Display Total Points -->
+    <div class="mb-6 text-lg font-bold text-blue-600 text-center">
+        Total Points: {{ auth()->user()->num_of_scores}}
+    </div>
+
     <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         @foreach($applications as $application)
             @if($application->feedback->where('user_id', auth()->user()->id)->count() > 0)
