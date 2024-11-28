@@ -9,6 +9,7 @@ Route::get('/', \App\Http\Controllers\WelcomeController::class)->name('welcome')
 Route::get('applications', [\App\Http\Controllers\ApplicationController::class, 'index'])->name('applications.index');
 Route::get('applications/{application}',[\App\Http\Controllers\ApplicationController::class, 'show'])->name('applications.show');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+Route::post('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 
 //Authenticated routes
 require __DIR__.'/auth.php';
