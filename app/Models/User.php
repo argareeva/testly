@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'num_of_scores',
     ];
 
     /**
@@ -51,4 +52,21 @@ class User extends Authenticatable
     {
         return $this->hasMany(Application::class, 'author_id');
     }
+
+    public function feedback()
+    {
+        return $this->hasMany(Feedback::class, 'user_id');
+    }
+
+    public function updateScore($applicationId)
+    {
+        $existingFeedback = $this->feedback->where('user_id', auth()->user()->id)
+            ->where('application_id', $applicationId);
+
+        //if the user submitted their first feedback
+        if ($existingFeedback->count() == 1) {
+            $this->increment('num_of_scores', 5);
+        }
+    }
+
 }
