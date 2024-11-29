@@ -12,14 +12,14 @@ No special requirements for the environment.
 
 - Create a directory for the project and cd into it
 - Clone the project into this directory (`git clone https://github.com/argareeva/testly.git  .`)
-- run 'composer install'
-- Create a .env for your dev environment: 'cp .env.example .env' and adjust the settings (local domain, database, etc)
-- Set the encryption key in the .env: 'php artisan key:generate'
-- If you use sqlite: do execute 'touch database/database.sqlite'
-- Migrate the tables: 'php artisan migrate'
-- Seed date: 'php artisan db:seed'
+- run `composer install`
+- Create a .env for your dev environment: `cp .env.example .env` and adjust the settings (local domain, database, etc)
+- Set the encryption key in the .env: `php artisan key:generate`
+- If you use sqlite: do execute `touch database/database.sqlite`
+- Migrate the tables: `php artisan migrate`
+- Seed date: `php artisan db:seed`
 
 ## Check the deployed app
 
-- Go to the (https://testly.harbourspace.site/)
+- Go to the https://testly.harbourspace.site/
 - Log in with albina@gmail.com, test
