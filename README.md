@@ -11,7 +11,7 @@ No special requirements for the environment.
 ## Dev Installation instructions
 
 - Create a directory for the project and cd into it
-- Clone the project into this directory (`git clone https://github.com/argareeva/testly.git  .`)
+- Clone the project into this directory `git clone https://github.com/argareeva/testly.git  .`
 - run `composer install`
 - Create a .env for your dev environment: `cp .env.example .env` and adjust the settings (local domain, database, etc)
 - Set the encryption key in the .env: `php artisan key:generate`
