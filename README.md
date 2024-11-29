@@ -1,11 +1,13 @@
 ## Testly
 
 Testly is a platform designed to connect companies and early adopters for seamless product testing and valuable feedback. Businesses can create tailored test projects to evaluate prototypes, while users participate in short tasks, share insights, and earn rewards.
+
 This is an MVP.
 
 ## Requirements
 
 This project uses Laravel 11 and PHP version 8.3. 
+
 No special requirements for the environment. 
 
 ## Dev Installation instructions
