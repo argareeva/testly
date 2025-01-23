@@ -12,7 +12,6 @@ class WelcomeController extends Controller
     {
         $applications = Application::published()->get()->sortByDesc('published_at');
 
-        $applications ->checkingFlare();
         return view('welcome', compact('applications'));
     }
 }
