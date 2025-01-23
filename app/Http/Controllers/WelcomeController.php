@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
-    checkingFlare();
 
     public function __invoke()
     {
         $applications = Application::published()->get()->sortByDesc('published_at');
+
+        $applications ->checkingFlare();
         return view('welcome', compact('applications'));
     }
 }
