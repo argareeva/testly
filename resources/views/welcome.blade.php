@@ -1,7 +1,14 @@
 <x-site-layout title="Testly">
 
-{{--    <x-news/>--}}
-    <livewire:news-feed />
+    {{--    <x-news/>--}}
+
+    <div class="mb-6">
+        <livewire:application-search />
+    </div>
+
+    <div class="mb-6">
+        <livewire:news-feed />
+    </div>
 
     <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         @foreach($applications as $application)
