@@ -7,12 +7,6 @@ use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
 {
-    public function index()
-    {
-        $applications = Application::published()->orderByDesc('published_at')->get();
-        return view('applications.index')->with('applications', $applications);
-    }
-
     public function show(int $id)
     {
         $application = Application::published()->where('id', $id)->first();
