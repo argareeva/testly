@@ -11,12 +11,6 @@ class CategoryController
     {
         $categories = Category::get();
 
-//        if(auth()->user()->is_admin){
-//            $categories = Category::get();
-//        } else {
-//            $categories = Category::where('author_id', auth()->user()->id)->get();
-//        }
-
         return view('user.categories.index', compact('categories'));
     }
 
@@ -33,9 +27,6 @@ class CategoryController
      */
     public function store(Request $request)
     {
-
-        //dd($request);
-
         $request->validate([
             'title' => ['required', 'string'],
         ]);
@@ -114,10 +105,6 @@ class CategoryController
     private function isAuthorized(Category $category): void
     {
         if (auth()->user()->is_admin == 1) {
-            return;
-        }
-
-        if ($category->author_id == auth()->user()->id) {
             return;
         }
 
