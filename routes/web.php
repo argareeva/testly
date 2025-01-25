@@ -10,15 +10,15 @@ Route::get('applications/{application}',[\App\Http\Controllers\ApplicationContro
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 Route::post('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 
-//Authenticated routes
+// Authenticated routes
 require __DIR__.'/auth.php';
-Route::name('user.')->middleware(['auth', 'verified'])->group(function () {
-    Route::resource('user/applications', App\Http\Controllers\User\ApplicationController::class);
-    Route::resource('user/categories', App\Http\Controllers\User\CategoryController::class);
-    Route::get('user/applications/{id}/publish', \App\Http\Controllers\User\ApplicationPublishController::class)->name('applications.publish');
-    Route::get('/applications/{application}/feedback', [\App\Http\Controllers\User\FeedbackController::class, 'create'])->name('feedback.create');
-    Route::post('/applications/{application}/feedback', [\App\Http\Controllers\User\FeedbackController::class, 'store'])->name('feedback.store');
-    Route::get('user/tested', [\App\Http\Controllers\User\TestedController::class, 'index'])->name('user.tested.index');
+Route::prefix('user')->name('user.')->middleware(['auth', 'verified'])->group(function () {
+    Route::resource('applications', App\Http\Controllers\User\ApplicationController::class);
+    Route::resource('categories', App\Http\Controllers\User\CategoryController::class);
+    Route::get('applications/{id}/publish', \App\Http\Controllers\User\ApplicationPublishController::class)->name('applications.publish');
+    Route::get('applications/{application}/feedback', [\App\Http\Controllers\User\FeedbackController::class, 'create'])->name('feedback.create');
+    Route::post('applications/{application}/feedback', [\App\Http\Controllers\User\FeedbackController::class, 'store'])->name('feedback.store');
+    Route::get('tested', [\App\Http\Controllers\User\TestedController::class, 'index'])->name('tested.index');
 });
 
 Route::get('/dashboard', function () {
