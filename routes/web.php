@@ -15,6 +15,7 @@ Route::post('/login', [AuthenticatedSessionController::class, 'create'])->name('
 require __DIR__.'/auth.php';
 Route::name('user.')->middleware(['auth', 'verified'])->group(function () {
     Route::resource('user/applications', App\Http\Controllers\User\ApplicationController::class);
+    Route::resource('user/categories', App\Http\Controllers\User\CategoryController::class);
     Route::get('user/applications/{id}/publish', \App\Http\Controllers\User\ApplicationPublishController::class)->name('applications.publish');
     Route::get('/applications/{application}/feedback', [\App\Http\Controllers\User\FeedbackController::class, 'create'])->name('feedback.create');
     Route::post('/applications/{application}/feedback', [\App\Http\Controllers\User\FeedbackController::class, 'store'])->name('feedback.store');

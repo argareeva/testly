@@ -10,6 +10,16 @@ class Category extends Model
     /** @use HasFactory<\Database\Factories\CategoryFactory> */
     use HasFactory;
 
+    protected $guarded = [];
+    public function authorized($user)
+    {
+        if($user->is_admin) {
+            return;
+        }
+
+        abort(401);
+    }
+
     //Model relationship
     public function applications()
     {
