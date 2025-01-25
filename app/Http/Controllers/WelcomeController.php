@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
-use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
@@ -12,6 +11,6 @@ class WelcomeController extends Controller
     {
         $applications = Application::published()->get()->sortByDesc('published_at');
 
-        return view('welcome', compact('applications'));
+        return view('welcome')->with('applications', $applications);
     }
 }

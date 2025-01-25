@@ -1,4 +1,7 @@
 <x-site-layout title="Testly">
+
+    <x-news/>
+
     <div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         @foreach($applications as $application)
             <a href="{{ route('applications.show', $application->id) }}"
